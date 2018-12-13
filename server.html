@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="esp">
+	
+	<!-- AWP_In_Variable Name='"Manual"' -->
+	<!-- AWP_In_Variable Name='"Automatico"' -->
+	<!-- AWP_In_Variable Name='"t11"' -->
+	<!-- AWP_In_Variable Name='"t12"' -->
+	<!-- AWP_In_Variable Name='"t21"' -->
+	<!-- AWP_In_Variable Name='"t22"' -->
+	
+	<head>
+		<meta charset="utf-8">
+		<script src="timehandler.js"></script>
+		<title>Servidor Web para o S7-1200</title>
+		<style>
+			body{
+				background-color: lightblue;
+				text-align: center;
+			}
+			.center {
+    			margin: auto;
+    			width: 50%;
+    			border: 3px solid green;
+    			padding: 10px;
+    			height: 100%;
+			}
+		</style>
+		
+		<script type="text/javascript">
+			function timer1(){
+				var t11 = document.getElementById('ti1').value;
+				<!--document.getElementById('display1').innerHTML = t11;-->
+				var aux1 = 'TOD%23';
+				var aux2 = '%3A';
+				var aux3 = '00.000';
+				t11 = aux1 + t11.substr(0,2) + aux2 + t11.substr(3,4) + aux2 + aux3;
+				location.replace(window.location.href + '&"t11"=' + t11);
+				document.getElementById('display1').innerHTML = t11;
+			}
+			function timer2(){
+				var t12 = document.getElementById('ti2').value;
+				<!--document.getElementById('display2').innerHTML = t12;-->
+				var aux1 = 'TOD%23';
+				var aux2 = '%3A';
+				var aux3 = '00.000';
+				t12 = aux1 + t12.substr(0,2) + aux2 + t12.substr(3,4) + aux2 + aux3;
+				location.replace(window.location.href + '&"t12"=' + t12);
+				document.getElementById('display2').innerHTML = t12;
+			}
+			function timer3(){
+				var t21 = document.getElementById('ti3').value;
+				document.getElementById('display3').innerHTML = t21;
+				escape(t21);
+				
+			}
+			function timer4(){
+				var t22 = document.getElementById('ti4').value;
+				document.getElementById('display4').innerHTML = t22;
+				escape(t22);
+			}
+		</script>
+		
+	</head>
+	<body class="center">
+		<div style="color: rgb(255,0,0);">MODO</div>
+		<form>
+			<p style="color: rgb(0,0,255);"">
+				<input type="submit" value="Manual">
+				<input type="hidden" name='"Manual"' value="1">
+				<input type="hidden" name='"Automatico"' value="0">
+			</p>
+		</form>
+		<form>
+			<p style="color: rgb(0,0,255);"">
+				<input type="submit" value="Automatico">
+				<input type="hidden" name='"Automatico"' value="1">
+				<input type="hidden" name='"Manual"' value="0">
+			</p>
+		</form>
+		
+		<div style="color: rgb(255,0,0);">Horários de Irrigação Automática</div><br>
+		<form style="color: rgb(0,0,255);">
+			Hora Inicial: <input type="time" name="usr_time" id = "ti1" onchange = "timer1()"/>
+			<span id = "display1"></span>
+		</form><br>
+		<form style="color: rgb(0,0,255);">
+			Hora Final:
+			<input type="time" name="usr_time" id = "ti2" onchange = "timer2()"/>
+			<span id = "display2"></span>
+		</form><br>
+
+		Manual: :="Manual":<br>
+		Automatico: :="Automatico":<br>
+		Hora Inicial: :="t11":<br>
+		Hora Final: :=t12:<br>
+	</body>
+</html>
